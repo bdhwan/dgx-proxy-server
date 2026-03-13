@@ -190,7 +190,7 @@ header h1{font-size:13px;font-weight:700;color:#34c759;white-space:nowrap}
 
 <header>
   <h1>⚡ DGX Spark</h1>
-  <div class="hb g"><div class="dot off" id="dot-g"></div>GPT-120B</div>
+  <div class="hb g"><div class="dot off" id="dot-g"></div>GPT-20B</div>
   <div class="hb m"><div class="dot off" id="dot-m"></div>Gemma3-27B</div>
   <div class="mst">
     <span class="ms ld" id="ms-g">⏳</span>
@@ -205,16 +205,16 @@ header h1{font-size:13px;font-weight:700;color:#34c759;white-space:nowrap}
 
 <div class="panes" id="panes">
 
-  <!-- GPT-OSS-120B -->
+  <!-- GPT-OSS-20B -->
   <div class="pane gp active" id="pane-g">
-    <div class="ph g">🟢 GPT-OSS-120B<span class="ep">100.95.83.78:8000</span>
+    <div class="ph g">🟢 GPT-OSS-20B<span class="ep">100.95.83.78:8000</span>
       <button class="sys-btn" onclick="toggleSys('g')">SYS▾</button>
       <span class="ps" id="ps-g">대기 중</span></div>
     <div class="sys-wrap" id="sw-g"><textarea id="sys-g" placeholder="시스템 프롬프트..." oninput="localStorage.setItem('sys-g',this.value)"></textarea></div>
     <div class="chat" id="chat-g"></div>
     <div class="pi">
       <button class="ibtn cl" onclick="clearPane('g')"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button>
-      <textarea id="in-g" placeholder="GPT-OSS-120B..."></textarea>
+      <textarea id="in-g" placeholder="GPT-OSS-20B..."></textarea>
       <button class="ibtn go" id="sb-g" onclick="sendOne('g')"><svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg></button>
     </div>
   </div>
@@ -255,7 +255,7 @@ header h1{font-size:13px;font-weight:700;color:#34c759;white-space:nowrap}
 
 <div class="mob-tabs">
   <button id="tab-g" onclick="switchTab('g')">
-    <span class="ti">🟢</span><span class="tl">GPT-120B</span>
+    <span class="ti">🟢</span><span class="tl">GPT-20B</span>
     <span class="mob-spd" id="mspd-g">—</span><span class="td"></span>
   </button>
   <button id="tab-m" onclick="switchTab('m')">
