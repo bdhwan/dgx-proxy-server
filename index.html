@@ -190,8 +190,8 @@ header h1{font-size:13px;font-weight:700;color:#34c759;white-space:nowrap}
 
 <header>
   <h1>⚡ DGX Spark</h1>
-  <div class="hb g"><div class="dot off" id="dot-g"></div>GPT-20B</div>
-  <div class="hb m"><div class="dot off" id="dot-m"></div>Gemma3-27B</div>
+  <div class="hb g"><div class="dot off" id="dot-g"></div><span id="lbl-g">...</span></div>
+  <div class="hb m"><div class="dot off" id="dot-m"></div><span id="lbl-m">...</span></div>
   <div class="mst">
     <span class="ms ld" id="ms-g">⏳</span>
     <span class="ms ld" id="ms-m">⏳</span>
@@ -207,7 +207,7 @@ header h1{font-size:13px;font-weight:700;color:#34c759;white-space:nowrap}
 
   <!-- GPT-OSS-20B -->
   <div class="pane gp active" id="pane-g">
-    <div class="ph g">🟢 GPT-OSS-20B<span class="ep">100.95.83.78:8000</span>
+    <div class="ph g">🟢 <span id="ph-g">...</span><span class="ep">100.95.83.78:8000</span>
       <button class="sys-btn" onclick="toggleSys('g')">SYS▾</button>
       <span class="ps" id="ps-g">대기 중</span></div>
     <div class="sys-wrap" id="sw-g"><textarea id="sys-g" placeholder="시스템 프롬프트..." oninput="localStorage.setItem('sys-g',this.value)"></textarea></div>
@@ -222,7 +222,7 @@ header h1{font-size:13px;font-weight:700;color:#34c759;white-space:nowrap}
   <!-- Gemma3-27B -->
   <div class="pane mp" id="pane-m" style="position:relative">
     <div class="drag-overlay" id="drag-ov-m"><span class="di">🖼️</span><span class="dt">이미지를 여기에 놓으세요</span></div>
-    <div class="ph m">🟠 Gemma3-27B<span class="ep">100.87.77.45:8000</span>
+    <div class="ph m">🟠 <span id="ph-m">...</span><span class="ep">100.87.77.45:8000</span>
       <button class="sys-btn" onclick="toggleSys('m')">SYS▾</button>
       <span class="ps" id="ps-m">연결 확인 중...</span></div>
     <div class="sys-wrap" id="sw-m"><textarea id="sys-m" placeholder="시스템 프롬프트..." oninput="localStorage.setItem('sys-m',this.value)"></textarea></div>
@@ -255,11 +255,11 @@ header h1{font-size:13px;font-weight:700;color:#34c759;white-space:nowrap}
 
 <div class="mob-tabs">
   <button id="tab-g" onclick="switchTab('g')">
-    <span class="ti">🟢</span><span class="tl">GPT-20B</span>
+    <span class="ti">🟢</span><span class="tl" id="tl-g">...</span>
     <span class="mob-spd" id="mspd-g">—</span><span class="td"></span>
   </button>
   <button id="tab-m" onclick="switchTab('m')">
-    <span class="ti">🟠</span><span class="tl">Gemma3</span>
+    <span class="ti">🟠</span><span class="tl" id="tl-m">...</span>
     <span class="mob-spd" id="mspd-m">—</span><span class="td"></span>
   </button>
   </div>
@@ -335,6 +335,12 @@ async function ping(k){
     const d=await fetch(EP[k].base+'/models',{signal:AbortSignal.timeout(5000)}).then(r=>r.json());
     if(d.data?.length){
       modelReady[k]=true;
+      EP[k].model=d.data[0].id;
+      const name=d.data[0].id;
+      t('lbl-'+k,name);
+      t('ph-'+k,name);
+      t('tl-'+k,name.length>10?name.slice(0,10)+'…':name);
+      const ta=document.getElementById('in-'+k);if(ta)ta.placeholder=name+'...';
       document.getElementById('dot-'+k).className='dot on';
       t('ms-'+k,'✅');
       document.getElementById('ms-'+k).className='ms ok';
