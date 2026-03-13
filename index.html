@@ -512,7 +512,7 @@ async function sendOne(k){
   if(k==='m'&&imgs.length){imgs=[];renderImgs();}
   addUserBubble('chat-'+k,text||(hasImg?'[이미지 '+sentImgs.length+'장]':''),hasImg?sentImgs:[]);
   let content=text;
-  if(k==='q'&&sentImgs.length){
+  if(k==='m'&&sentImgs.length){
     content=[{type:'text',text:text||'이미지를 분석해줘.'},...sentImgs.map(u=>({type:'image_url',image_url:{url:u}}))];
   }
   // user push 전: 마지막이 user면 dummy assistant 삽입
