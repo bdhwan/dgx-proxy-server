@@ -207,7 +207,7 @@ header h1{font-size:13px;font-weight:700;color:#34c759;white-space:nowrap}
 
   <!-- GPT-OSS-120B -->
   <div class="pane gp active" id="pane-g">
-    <div class="ph g">🟢 GPT-OSS-120B<span class="ep">100.87.77.45:8000</span>
+    <div class="ph g">🟢 GPT-OSS-120B<span class="ep">100.95.83.78:8000</span>
       <button class="sys-btn" onclick="toggleSys('g')">SYS▾</button>
       <span class="ps" id="ps-g">대기 중</span></div>
     <div class="sys-wrap" id="sw-g"><textarea id="sys-g" placeholder="시스템 프롬프트..." oninput="localStorage.setItem('sys-g',this.value)"></textarea></div>
@@ -222,7 +222,7 @@ header h1{font-size:13px;font-weight:700;color:#34c759;white-space:nowrap}
   <!-- Gemma3-27B -->
   <div class="pane mp" id="pane-m" style="position:relative">
     <div class="drag-overlay" id="drag-ov-m"><span class="di">🖼️</span><span class="dt">이미지를 여기에 놓으세요</span></div>
-    <div class="ph m">🟠 Gemma3-27B<span class="ep">100.95.83.78:11434 (Ollama)</span>
+    <div class="ph m">🟠 Gemma3-27B<span class="ep">100.87.77.45:8000</span>
       <button class="sys-btn" onclick="toggleSys('m')">SYS▾</button>
       <span class="ps" id="ps-m">연결 확인 중...</span></div>
     <div class="sys-wrap" id="sw-m"><textarea id="sys-m" placeholder="시스템 프롬프트..." oninput="localStorage.setItem('sys-m',this.value)"></textarea></div>
@@ -332,7 +332,7 @@ function updateProgress(k, loading){
 
 async function ping(k){
   try{
-    const d=await fetch(k==='g'?'http://100.87.77.45:9091/proxy/models':EP[k].base+'/models',{signal:AbortSignal.timeout(5000)}).then(r=>r.json());
+    const d=await fetch(EP[k].base+'/models',{signal:AbortSignal.timeout(5000)}).then(r=>r.json());
     if(d.data?.length){
       modelReady[k]=true;
       document.getElementById('dot-'+k).className='dot on';
